@@ -1,0 +1,5 @@
+git config --global user.name 'hl'
+git config --blobal user.email huanle0610@gmail.com
+git config --global user.email huanle0610@gmail.com
+git config --global core.editor vim
+git config -l

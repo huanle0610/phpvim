@@ -1,0 +1,7 @@
+#!/bin/sh
+session_path=~/myvim/session
+if [ -r $session_path/$1.session ]; then
+	gvim "+source $session_path/$1.session" "+rviminfo $session_path/$1.viminfo"
+else
+	gvim $1
+fi
