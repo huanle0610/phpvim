@@ -60,15 +60,24 @@ colorscheme evening
 syntax on
 
 "Tab设置为4个字符
-set tabstop=4
 set tabstop=4   "设置tabs显示为4个空格的宽度(默认为8个)
 set softtabstop=4 
-set shiftwidth=4            " 设定 << 和 >> 命令移动时的宽度为 4
-"set expandtab   " Turn Tab keypresses into spaces. Sounds like this is happening to you.
+set expandtab   " Turn Tab keypresses into spaces. Sounds like this is happening to you.
                          "    You can still insert real Tabs as [Ctrl]-V [Tab].
-set noexpandtab      " Leave Tab keys as real tabs (ASCII 9 character).
+"set noexpandtab      " Leave Tab keys as real tabs (ASCII 9 character).
 set shiftwidth=4     " When auto-indenting, indent by this much.
                          "   (Use spaces/tabs per 'expandtab'.)
+
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ts=%d sw=%d tw=%d :",
+        \ &tabstop, &shiftwidth, &textwidth)
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 
 "状态栏显示设置
