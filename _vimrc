@@ -276,3 +276,23 @@ endfunction
 "shell命令
 " cat -vT desktop/a.php   shell命令查看文本文件不可打印字符、Tab等
 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+"for windows gvim73 utf8乱码
+"windows 去除注释即可
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set encoding=utf-8
+"set fileencodings=utf-8,chinese,latin-1
+"if has("win32")
+    "set fileencoding=chinese
+"else
+    "set fileencoding=utf-8
+"endif
+""解决菜单乱码
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
+""解决consle输出乱码
+
+"language messages zh_CN.utf-8
+"for windows gvim73 utf8乱码 END
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
