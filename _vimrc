@@ -5,6 +5,7 @@
 let mapleader = ","
 nmap <leader>uuc :call UpdateCFG()<CR>
 nmap <leader>ee :call EditCFG()<CR>
+nmap <leader>tt :read !date<CR>
 
 set nu
 "取消显示行号
