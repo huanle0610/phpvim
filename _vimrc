@@ -16,6 +16,9 @@ set completeopt=longest,menu
 "文件编码识别
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
+"搜索高亮
+set hlsearch
+
 "小括号、大括号、中括号、单双引号等自动补齐
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
@@ -168,8 +171,6 @@ function! PhpCheckSyntax()
 endfunction
 
 " Perform :PhpCheckSyntax()
-map <F5> :call PhpCheckSyntax()<CR>
-imap <F5> <ESC>:call PhpCheckSyntax()<CR>
 autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
 "退出
@@ -189,7 +190,9 @@ nmap <C-;> :ccl<CR>
 "函数原型跳转
 nmap <F3> :tselect<cr>
 
-
+"取消搜索高亮
+map <F5> :set nohlsearch<CR>
+map <C-F5> :set hlsearch<CR>
 "窗口切换快捷键设置
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
@@ -259,20 +262,35 @@ endfunction
 
 
 ""搜索应用
-""""建议搜索前sp命令,产生一个新窗口.避免进入查找到的文件后,查不到原文件
-"""":vimgrep /spaceDiy/ static/js/**	在static/js目录下递归查找pattern指定的内容
+"建议搜索前sp命令,产生一个新窗口.避免进入查找到的文件后,查不到原文件
+":vimgrep /spaceDiy/ static/js/**	在static/js目录下递归查找pattern指定的内容
+"
+""显示
 ":cw		显示查询到的Quickfix列表	
 ":set list  显示特殊字符
+"
+""滚动
 "zz: 将当前行置于屏幕中间
 "zt: 将当前行置于屏幕顶端
 "zb：底端啦~
+"H:  屏幕最上方
+"M:  屏幕中间
+"L:  屏幕最下方
 "还有一条就是移动光标所在行的位置，就是说，比如我光标在第10行，我想光标不动，但是所在行向上移，ctrl-e啦，然后向下的话，ctrl-y~
 
 "	ci'、ci"、ci(、ci[、ci{、ci< - 分别更改这些配对标点符号中的文本内容
 "	di'、di"、di(或dib、di[、di{或diB、di< - 分别删除这些配对标点符号中的文本内容
+"	da'、da"、da(或dab、da[、da{或daB、da< - 分别删除这些配对标点符号和文本内容
 "	yi'、yi"、yi(、yi[、yi{、yi< - 分别复制这些配对标点符号中的文本内容
+"	ya'、ya"、ya(、ya[、ya{、ya< - 分别复制这些配对标点符号和文本内容
 "	vi'、vi"、vi(、vi[、vi{、vi< - 分别选中这些配对标点符号中的文本内容
 "	另外如果把上面的i改成a可以连配对标点一起操作。
+"	yf'、yf"、yf)、yf]、yf}、yf> - 分别复制从当前光标到标点符号和文本内容
+"
+"   vim a.php +11 打开a.php，定位到第11行
+"
+"
+"
 "
 "shell命令
 " cat -vT desktop/a.php   shell命令查看文本文件不可打印字符、Tab等
@@ -296,4 +314,5 @@ endfunction
 "language messages zh_CN.utf-8
 "for windows gvim73 utf8乱码 END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+"modify time
+"2011年 08月 07日 星期日 09:09:31 CST
