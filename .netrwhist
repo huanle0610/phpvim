@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/huanle0610/桌面/tool/shell'
 let g:netrw_dirhist_2='/var/www/yii-sae'
 let g:netrw_dirhist_3='/home/huanle0610/tool'
+let g:netrw_dirhist_4='/home/huanle0610/phpvim'

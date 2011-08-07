@@ -6,6 +6,8 @@ let mapleader = ","
 nmap <leader>uuc :call UpdateCFG()<CR>
 nmap <leader>ee :call EditCFG()<CR>
 nmap <leader>tt :read !date<CR>
+"日期缩写替换
+iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
 
 set nu
 "取消显示行号
@@ -67,8 +69,8 @@ syntax on
 set tabstop=4   "设置tabs显示为4个空格的宽度(默认为8个)
 set softtabstop=4 
 set expandtab   " Turn Tab keypresses into spaces. Sounds like this is happening to you.
-                         "    You can still insert real Tabs as [Ctrl]-V [Tab].
-"set noexpandtab      " Leave Tab keys as real tabs (ASCII 9 character).
+                         ""    You can still insert real Tabs as [Ctrl]-V [Tab].
+""set noexpandtab      " Leave Tab keys as real tabs (ASCII 9 character).
 set shiftwidth=4     " When auto-indenting, indent by this much.
                          "   (Use spaces/tabs per 'expandtab'.)
 
@@ -112,8 +114,8 @@ map <C-s> :SessionSave<CR>
 "for cli
 map <C-F6> :SessionSave<CR>
 
-nmap <leader>ss :w<CR>
-nmap <leader>qq :wq<CR>
+nmap <leader>s :w<CR>
+nmap <leader>q :wq<CR>
 
 "系统粘贴复制
 nmap  <leader>pp "+p 
@@ -131,10 +133,6 @@ nmap <silent> <C-a> /^\s*\w<CR>zt
 " NERDTree插件的快捷键
 imap <silent> <F7> <esc>:NERDTreeToggle<CR>
 nmap <silent> <F7> :NERDTreeToggle<CR>
-" BufExplorer 快捷键 {{{
-imap <silent> <F8> <esc>:BufExplorer<CR>
-nmap <silent> <F8> :BufExplorer<CR>
-" }}}
 
 "tag-list插件窗口显示开关
 imap <silent> <F12> <esc>:TlistToggle<CR>
@@ -144,14 +142,14 @@ imap <silent> <C-F12> <esc>:TlistClose<CR>:TlistUpdate<CR>:TlistOpen<CR>
 nmap <silent> <C-F12> :TlistClose<CR>:TlistUpdate<CR>:TlistOpen<CR>
 
 
-"删除空行，删除行尾空字符
+"删除空行，删除行尾空字符,删除^M dos结束符
 nmap <leader>dl :g/^\s*$/d<CR>
 nmap <leader>ds :1,$s/\s*$//g<CR>
+nmap <leader>dw :%s/\r//g<CR>
 
 """""""""""""""""""""""""
 "函数补齐
-"Remap the tab key to select action with InsertTabWrapper
-inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+"by plugin supertab
 
 ""php语法检查
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,6 +158,8 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
  
 function! PhpCheckSyntax()
     " Check php syntax
+    echomsg MySys()
+    echomsg "MySys"
     setlocal makeprg=\"/usr/local/php5/bin/php\"\ -l\ -n\ -d\ html_errors=off
  
     " Set shellpipe
@@ -181,6 +181,7 @@ nmap <c-q> <F7>:qa<cr>
 map <F4> :se invnu<CR> 
 "定义切换插入模式粘贴切换快捷键
 set pastetoggle=<C-F9>
+"不复制行号
 set mouse=a
 
 "Quickfix窗口显示 
@@ -191,8 +192,8 @@ nmap <C-;> :ccl<CR>
 nmap <F3> :tselect<cr>
 
 "取消搜索高亮
-map <F5> :set nohlsearch<CR>
-map <C-F5> :set hlsearch<CR>
+map <C-F5> :set nohlsearch<CR>
+map <F5> :set hlsearch<CR>
 "窗口切换快捷键设置
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
@@ -226,20 +227,60 @@ function! ClosePair(char)
 	endif
 endf
 
-"Tab缩进与补齐函数 
-"Auto completion using the TAB key
-"This function determines, wether we are on
-"the start of the line text(then tab indents)
-"or if we want to try auto completion
-function! InsertTabWrapper()
-    let col=col('.')-1
-    if !col || getline('.')[col-1] !~ '\k'
-        return "\<TAB>"
-    else
-"此处运用了assistant的提示 功能
-        return "\<C-x>\<C-u>"
-    endif
-endfunction
+"Delete trailing white space, useful for Python :)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+
+""""""""""""""""""""""""""""""
+" => bufExplorer plugin
+""""""""""""""""""""""""""""""
+let g:bufExplorerFindActive=1
+" bufExplorer 快捷键 {{{
+imap <silent> <C-F8> <esc>:BufExplorer<CR>
+nmap <silent> <C-F8> :BufExplorer<CR>
+" }}}
+
+""""""""""""""""""""""""""""""
+" => Minibuffer plugin
+""""""""""""""""""""""""""""""
+let g:miniBufExplModSelTarget = 0
+let g:miniBufExplorerMoreThanOne = 0
+let g:miniBufExplModSelTarget = 0
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplVSplit = 30
+let g:miniBufExplSplitBelow=1
+
+"autocmd BufRead,BufNew :call UMiniBufExplorer
+
+" miniExplorer 快捷键 {{{
+imap <silent> <F8> <esc>:TMiniBufExplorer<CR>
+nmap <silent> <F8> :TMiniBufExplorer<CR> 
+" }}}
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+"Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
+
+""""""""""""""""""""""""""""""
+" => Vim grep
+""""""""""""""""""""""""""""""
+let Grep_Skip_Dirs = 'RCS .tag CVS SCCS .svn generated'
+set grepprg=/bin/grep\ -nH
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""应用部分
@@ -315,4 +356,4 @@ endfunction
 "for windows gvim73 utf8乱码 END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "modify time
-"2011年 08月 07日 星期日 09:09:31 CST
+"2011年 08月 07日 星期日 17:36:51 CST
