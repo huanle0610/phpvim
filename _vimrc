@@ -253,7 +253,7 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplVSplit = 30
 let g:miniBufExplSplitBelow=1
 
-"autocmd BufRead,BufNew :call UMiniBufExplorer
+autocmd BufRead,BufNew :call UMiniBufExplorer
 
 " miniExplorer 快捷键 {{{
 imap <silent> <F8> <esc>:TMiniBufExplorer<CR>
