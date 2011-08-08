@@ -158,8 +158,6 @@ nmap <leader>dw :%s/\r//g<CR>
  
 function! PhpCheckSyntax()
     " Check php syntax
-    echomsg MySys()
-    echomsg "MySys"
     setlocal makeprg=\"/usr/local/php5/bin/php\"\ -l\ -n\ -d\ html_errors=off
  
     " Set shellpipe
@@ -267,7 +265,7 @@ nmap <silent> <F8> :TMiniBufExplorer<CR>
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>sp :setlocal spell!<cr>
 
 "Shortcuts using <leader>
 map <leader>sn ]s
