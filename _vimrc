@@ -5,6 +5,7 @@
 let mapleader = ","
 nmap <leader>uuc :call UpdateCFG()<CR>
 nmap <leader>ee :call EditCFG()<CR>
+nmap <leader>qa :qall<CR>
 nmap <leader>tt :read !date<CR>
 "日期缩写替换
 iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
@@ -20,6 +21,20 @@ set fileencodings=utf-8,gbk,ucs-bom,cp936
 
 "搜索高亮
 set hlsearch
+" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
+set incsearch
+" 不要闪烁
+set novisualbell 
+
+"设置工作目录
+"good idea but not suit everyone i think
+function! CHANGE_CURR_DIR()
+    let _dir = expand("%:p:h")
+    exec "cd " . _dir
+    unlet _dir
+endfunction
+"autocmd BufEnter * call CHANGE_CURR_DIR()
+map <leader>cd  :call CHANGE_CURR_DIR()<CR>
 
 "小括号、大括号、中括号、单双引号等自动补齐
 :inoremap ( ()<ESC>i
@@ -105,7 +120,6 @@ set guioptions-=m
 "隐藏工具栏
 set guioptions-=T
 
-"session open,save
 "session open,save
 imap <F6> <esc>:SessionOpen<space>
 nmap <F6> :SessionOpen<space>
