@@ -279,7 +279,7 @@ nmap <silent> <F8> :TMiniBufExplorer<CR>
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Pressing ,ss will toggle and untoggle spell checking
-map <leader>sp :setlocal spell!<cr>
+map <leader>ssp :setlocal spell!<cr>
 
 "Shortcuts using <leader>
 map <leader>sn ]s
@@ -341,6 +341,9 @@ set grepprg=/bin/grep\ -nH
 "	yf'、yf"、yf)、yf]、yf}、yf> - 分别复制从当前光标到标点符号和文本内容
 "
 "   vim a.php +11 打开a.php，定位到第11行
+"
+"   upper,lower 
+"   set visual,and then press "u" to lower,"U" to upper
 "
 "
 "
