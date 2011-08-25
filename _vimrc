@@ -71,7 +71,9 @@ set fdm=indent
 "配色方案
 "colorscheme shine
 "colorscheme af
-colorscheme evening 
+"colorscheme evening 
+"colorscheme  emacs
+colorscheme hl 
 "colorscheme gemcolors 
 "colorscheme night 
 "colorscheme twilight 
@@ -206,11 +208,6 @@ nmap <F3> :tselect<cr>
 "取消搜索高亮
 map <C-F5> :set nohlsearch<CR>
 map <F5> :set hlsearch<CR>
-"窗口切换快捷键设置
-map <C-j> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
-map <C-l> <C-W>l<C-W>_
-map <C-i> <C-W>h<C-W>_
 
 "au VimLeave * ksession! ~/myvim/session/%:t.session
 "au VimLeave * wviminfo! ~/myvim/session/%:t.viminfo
@@ -294,6 +291,11 @@ let Grep_Skip_Dirs = 'RCS .tag CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
 
 
+"窗口切换快捷键设置
+map <C-j> <C-W>j<C-W>_
+map <C-k> <C-W>k<C-W>_
+map <C-l> <C-W>l<C-W>_
+map <C-i> <C-W>h<C-W>_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""应用部分
 ""在函数中移动光标

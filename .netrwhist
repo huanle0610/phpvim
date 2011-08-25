@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/huanle0610/桌面/tool/shell'
-let g:netrw_dirhist_2='/var/www/yii-sae'
-let g:netrw_dirhist_3='/home/huanle0610/tool'
-let g:netrw_dirhist_4='/home/huanle0610/phpvim'
-let g:netrw_dirhist_5='/var/www/wk/my'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/var/www/dz_new'
+let g:netrw_dirhist_2='/home/huanle0610/phpvim'
+let g:netrw_dirhist_3='/home/huanle0610'
+let g:netrw_dirhist_4='/home/huanle0610/linux_php'
+let g:netrw_dirhist_5='/var/www/dz_new'
 let g:netrw_dirhist_6='/var/www/wk'
+let g:netrw_dirhist_7='/usr/local/httpd/conf'
+let g:netrw_dirhist_8='/var/www/dz_new'
