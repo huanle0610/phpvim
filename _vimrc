@@ -291,7 +291,7 @@ let Grep_Skip_Dirs = 'RCS .tag CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
 
 
-"窗口切换快捷键设置
+"窗口切换快捷键设置,放置于配置文件底部，以防止其它设置覆盖
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
 map <C-l> <C-W>l<C-W>_
