@@ -24,7 +24,7 @@ set hlsearch
 " 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
 set incsearch
 " 不要闪烁
-set novisualbell 
+set novisualbell
 
 "设置工作目录
 "good idea but not suit everyone i think
@@ -50,7 +50,7 @@ map <leader>cd  :call CHANGE_CURR_DIR()<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""折叠相关配置"""""""
 "手工定义折叠
-"set fdm=manual 
+"set fdm=manual
 "根据缩进折叠
 set fdm=indent
 "用表达式来定义折叠
@@ -71,20 +71,20 @@ set fdm=indent
 "配色方案
 "colorscheme shine
 "colorscheme af
-"colorscheme evening 
+"colorscheme evening
 "colorscheme  emacs
-colorscheme hl 
-"colorscheme gemcolors 
-"colorscheme night 
-"colorscheme twilight 
-"colorscheme railscasts 
+colorscheme hl
+"colorscheme gemcolors
+"colorscheme night
+"colorscheme twilight
+"colorscheme railscasts
 
 "语法开启
 syntax on
 
 "Tab设置为4个字符
 set tabstop=4   "设置tabs显示为4个空格的宽度(默认为8个)
-set softtabstop=4 
+set softtabstop=4
 set expandtab   " Turn Tab keypresses into spaces. Sounds like this is happening to you.
                          ""    You can still insert real Tabs as [Ctrl]-V [Tab].
 ""set noexpandtab      " Leave Tab keys as real tabs (ASCII 9 character).
@@ -134,10 +134,10 @@ nmap <leader>s :w<CR>
 nmap <leader>q :wq<CR>
 
 "系统粘贴复制
-nmap  <leader>pp "+p 
-nmap  <leader>pm "*p 
-nmap  <leader>pn "-p 
-vnoremap <leader>yy "+y 
+nmap  <leader>pp "+p
+nmap  <leader>pm "*p
+nmap  <leader>pn "-p
+vnoremap <leader>yy "+y
 nmap <leader>ggy ggVG
 nmap <leader>gy VG
 
@@ -171,14 +171,14 @@ nmap <leader>dw :%s/\r//g<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Check PHP Syntax using makeprg
 """""""""""""""""""""""""""""""""""""""""""""""""""""
- 
+
 function! PhpCheckSyntax()
     " Check php syntax
     setlocal makeprg=\"/usr/local/php5/bin/php\"\ -l\ -n\ -d\ html_errors=off
- 
+
     " Set shellpipe
     setlocal shellpipe=>
- 
+
     " Use error format for parsing PHP error output
     setlocal errorformat=%m\ in\ %f\ on\ line\ %l
     make %
@@ -192,22 +192,19 @@ nmap <c-q> <F7>:qa<cr>
 
 
 "行号显示 快捷键
-map <F4> :se invnu<CR> 
+map <F4> :se invnu<CR>
 "定义切换插入模式粘贴切换快捷键
 set pastetoggle=<C-F9>
 "不复制行号
 set mouse=a
 
-"Quickfix窗口显示 
+"Quickfix窗口显示
 nmap <F2> :cw<CR>
 nmap <C-;> :ccl<CR>
 
 "函数原型跳转
 nmap <F3> :tselect<cr>
 
-"取消搜索高亮
-map <C-F5> :set nohlsearch<CR>
-map <F5> :set hlsearch<CR>
 
 "au VimLeave * ksession! ~/myvim/session/%:t.session
 "au VimLeave * wviminfo! ~/myvim/session/%:t.viminfo
@@ -215,6 +212,9 @@ map <F5> :set hlsearch<CR>
 "真的很smart, 搜索时全小写相当于不区分大小写，只要有一个大写字母出现，则区分大小写
 "simple idea, great achievement!
 set ignorecase smartcase
+"取消搜索高亮
+map <C-F5> :set nohlsearch<CR>
+map <F5> :set hlsearch<CR>
 
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -227,7 +227,7 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""函数部分
 
-"自动闭合括号函数 
+"自动闭合括号函数
 function! ClosePair(char)
 	if getline('.')[col('.') - 1] == a:char
 		return "\<Right>"
@@ -268,7 +268,7 @@ autocmd BufRead,BufNew :call UMiniBufExplorer
 
 " miniExplorer 快捷键 {{{
 imap <silent> <F8> <esc>:TMiniBufExplorer<CR>
-nmap <silent> <F8> :TMiniBufExplorer<CR> 
+nmap <silent> <F8> :TMiniBufExplorer<CR>
 " }}}
 
 
@@ -321,7 +321,7 @@ map <C-i> <C-W>h<C-W>_
 ":vimgrep /spaceDiy/ static/js/**	在static/js目录下递归查找pattern指定的内容
 "
 ""显示
-":cw		显示查询到的Quickfix列表	
+":cw		显示查询到的Quickfix列表
 ":set list  显示特殊字符
 "
 ""滚动
@@ -344,7 +344,7 @@ map <C-i> <C-W>h<C-W>_
 "
 "   vim a.php +11 打开a.php，定位到第11行
 "
-"   upper,lower 
+"   upper,lower
 "   set visual,and then press "u" to lower,"U" to upper
 "
 "

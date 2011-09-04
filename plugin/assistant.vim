@@ -25,14 +25,14 @@ endif
 " Defined user complete function, default is <C-x-u>
 "
 " Mapping for Eclipse user
-" imap <silent> <unique> <A-/> <C-x><C-u>
-" nmap <silent> <unique> <A-/> :call <SID>Help()<Cr>
+"imap <silent> <unique> <A-/> <C-x><C-u>
+"nmap <silent> <unique> <A-/> :call <SID>Help()<Cr>
 "
 " Mapping for Netbeans user
-" imap <silent> <unique> <C-\> <C-x><C-u>
-" nmap <silent> <unique> <C-\> :call <SID>Help()<Cr>
+imap <silent> <unique> <C-\> <C-x><C-u>
+nmap <silent> <unique> <C-\> :call <SID>Help()<Cr>
 
-nmap <silent> <unique> <C-h> :call <SID>Help()<Cr>
+"nmap <silent>  <tab> :call <SID>Help()<Cr>
 
 " Defined complete file types
 let s:aType = {
