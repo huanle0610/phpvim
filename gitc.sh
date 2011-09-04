@@ -1,6 +1,10 @@
 #!/bin/bash
 #set -x
 cwd=$(pwd | awk -F/ '{print $NF}')
+#如果第二个参数指定了要提交的库名，则覆盖目录名
+if [ -n "$2" ];then
+    cwd=$2
+fi
 echo $1
 echo $cwd
 if [ "$1" = 'google' ];then
