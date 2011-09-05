@@ -9,6 +9,7 @@ echo Now,generate tags file for [$workpath]
 exec ctags-exuberant -f ./tags \
 -h ".php" -R \
 --exclude="\.svn" \
+--exclude="\.git" \
 --totals=yes \
 --tag-relative=yes \
 --PHP-kinds=+cf \
