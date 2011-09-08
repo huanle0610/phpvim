@@ -1,5 +1,7 @@
 "如果需要引入其它配置文件可以用命令
 "source filepath
+set nocompatible
+set backspace=indent,eol,start
 "显示行号
 "Set mapleader
 let mapleader = ","
@@ -205,9 +207,6 @@ nmap <C-;> :ccl<CR>
 "函数原型跳转
 nmap <F3> :tselect<cr>
 
-
-"au VimLeave * ksession! ~/myvim/session/%:t.session
-"au VimLeave * wviminfo! ~/myvim/session/%:t.viminfo
 
 "真的很smart, 搜索时全小写相当于不区分大小写，只要有一个大写字母出现，则区分大小写
 "simple idea, great achievement!
