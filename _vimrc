@@ -1,5 +1,7 @@
 "如果需要引入其它配置文件可以用命令
 "source filepath
+"
+"不需要保持和 vi 非常兼容
 set nocompatible
 set backspace=indent,eol,start
 "显示行号
@@ -17,6 +19,12 @@ set nu
 "set nonu
 filetype plugin indent on
 set completeopt=longest,menu
+
+
+" 使backspace正常处理indent, eol, start等
+set backspace=indent,eol,start whichwrap+=<,>,[,]
+" 允许backspace和光标键跨越行边界
+set whichwrap+=<,>,h,l
 
 "文件编码识别
 set fileencodings=utf-8,gbk,ucs-bom,cp936
