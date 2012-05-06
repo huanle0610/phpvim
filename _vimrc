@@ -1,19 +1,53 @@
+"file:///usr/share/vim/vim73/doc/usr_41.txt   vim文档
 "如果需要引入其它配置文件可以用命令
-"source filepath
+"source _vim_udf.vim
 "
 "不需要保持和 vi 非常兼容
 set nocompatible
 set backspace=indent,eol,start
-"显示行号
 "Set mapleader
 let mapleader = ","
 nmap <leader>uuc :call UpdateCFG()<CR>
 nmap <leader>ee :call EditCFG()<CR>
 nmap <leader>qa :qall<CR>
-nmap <leader>tt :read !date<CR>
+
+"清除并重绘屏幕,默认为c-l,此处重新定义
+map <leader>l :redr!<CR> 
+"=========================================
+"标签页管理
+map <C-tab> :tabn<CR>
+map <C-S-tab> :tabn<CR>
+map <C-n> :tabnew<CR>
+map <C-F4> :tabclose<CR>
+"=========================================
+"日期快捷输入映射
+nmap <leader>tt :call InsertDate('date_time',0)<CR>
+nmap <leader>ttn :call InsertDate('date_time',1)<CR>
+nmap <leader>tc :call InsertDate('cdate',0)<CR>
+nmap <leader>tcn :call InsertDate('cdate',1)<CR>
+"=========================================
+
+"=========================================
+"文件结束提示
+nmap <leader>pec :call Phpend(" CREATE BY JERRY ON ".GetDate('date_time'))<CR>
+nmap <leader>pe :call Phpend('')<CR>
+"=========================================
+ 
+
+"=========================================
+"缩写配置
 "日期缩写替换
 iab xdate <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
+"iab upper <c-r>=toupper("expression")<cr>
+"iab pwd <c-r>=getcwd()<cr>
+"=========================================
+" phpdoc
+inoremap <C-P> <ESC>:call PhpDocSingle()<CR>i 
+nnoremap <C-P> :call PhpDocSingle()<CR> 
+vnoremap <C-P> :call PhpDocRange()<CR>
 
+"=========================================
+"显示行号
 set nu
 "取消显示行号
 "set nonu
@@ -26,9 +60,22 @@ set backspace=indent,eol,start whichwrap+=<,>,[,]
 " 允许backspace和光标键跨越行边界
 set whichwrap+=<,>,h,l
 
+"编码设定
+set encoding=utf-8
+set fileencoding=utf-8
 "文件编码识别
 set fileencodings=utf-8,gbk,ucs-bom,cp936
+"文件格式设定
+set fileformat=unix
+set fileformats=unix,dos,mac
+"转化其它为unix格式
+"set fileformats=unix
+"bom设定
+"set nobomb
+"set bomb
 
+
+"============================================
 "搜索高亮
 set hlsearch
 " 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
@@ -36,6 +83,14 @@ set incsearch
 " 不要闪烁
 set novisualbell
 
+"真的很smart, 搜索时全小写相当于不区分大小写，只要有一个大写字母出现，则区分大小写
+"simple idea, great achievement!
+set ignorecase smartcase
+"取消搜索高亮
+map <C-F5> :let @/=''<CR> 
+"清空搜索关键词
+map <F5> :set invhlsearch<CR>
+"============================================
 "设置工作目录
 "good idea but not suit everyone i think
 function! CHANGE_CURR_DIR()
@@ -114,7 +169,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 
 "状态栏显示设置
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [LEN=%L]\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}
 
 "命令栏高度设置
 set cmdheight=1 "aslo can use ch
@@ -129,14 +184,18 @@ set guioptions-=l
 set guioptions-=L
 "隐藏菜单栏
 set guioptions-=m
+map <leader>gm :se guioptions+=m<CR>
+map <leader>gom :se guioptions-=m<CR>
 "隐藏工具栏
 set guioptions-=T
+map <leader>gt :se guioptions+=T<CR>
+map <leader>got :se guioptions-=T<CR>
 
 "session open,save
 imap <F6> <esc>:SessionOpen<space>
 nmap <F6> :SessionOpen<space>
 "for gui
-map <C-s> :SessionSave<CR>
+"map <C-s> :SessionSave<CR>
 "for cli
 map <C-F6> :SessionSave<CR>
 
@@ -144,9 +203,17 @@ nmap <leader>s :w<CR>
 nmap <leader>q :wq<CR>
 
 "系统粘贴复制
-nmap  <leader>pp "+p
-nmap  <leader>pm "*p
+" to see the detail :h reg
+" try :reg
+" :reg
+"其中注意两个特殊的寄存器："* 和 "+。
+"这两个寄存器是和系统相通的，前者关联系统选择缓冲区，后者关联系统剪切板。
+nmap  <leader>ps "+p
+nmap  <leader>pt "*p
 nmap  <leader>pn "-p
+" copy the current filename, and then you can use <leader>pm to paste
+nmap  <leader>cf :let @*=@%<CR>
+nmap  <leader>ct :let @+=@*<CR>
 vnoremap <leader>yy "+y
 nmap <leader>ggy ggVG
 nmap <leader>gy VG
@@ -197,8 +264,11 @@ endfunction
 " Perform :PhpCheckSyntax()
 autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
+" run python
+"map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
+"imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 "退出
-nmap <c-q> <F7>:qa<cr>
+nmap <c-q> :q!<cr>
 
 
 "行号显示 快捷键
@@ -210,18 +280,12 @@ set mouse=a
 
 "Quickfix窗口显示
 nmap <F2> :cw<CR>
-nmap <C-;> :ccl<CR>
+nmap <C-F2> :ccl<CR>
 
 "函数原型跳转
 nmap <F3> :tselect<cr>
 
 
-"真的很smart, 搜索时全小写相当于不区分大小写，只要有一个大写字母出现，则区分大小写
-"simple idea, great achievement!
-set ignorecase smartcase
-"取消搜索高亮
-map <C-F5> :set nohlsearch<CR>
-map <F5> :set hlsearch<CR>
 
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -302,6 +366,7 @@ set grepprg=/bin/grep\ -nH
 map <C-j> <C-W>j<C-W>_
 map <C-k> <C-W>k<C-W>_
 map <C-l> <C-W>l<C-W>_
+map <C-l> <C-W>l<C-W>_
 map <C-i> <C-W>h<C-W>_
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""应用部分
@@ -327,8 +392,28 @@ map <C-i> <C-W>h<C-W>_
 "建议搜索前sp命令,产生一个新窗口.避免进入查找到的文件后,查不到原文件
 ":vimgrep /spaceDiy/ static/js/**	在static/js目录下递归查找pattern指定的内容
 "
-""显示
-":cw		显示查询到的Quickfix列表
+":pwd 查看当前目录，不要搜索错误的目录
+":cd path_to_dir 进入要搜索的目录
+":tabe[dit] 新建一个tab窗口，用来搜索结果
+":vim[grep] patter **/*.php **/*.tpl 其中搜索条件 patter 可以使用 ctrl+r " 方式粘贴，因为是命令行，无法直接使用p粘贴。 **递归当前目录
+":cnext (:cn) 当前页下一个结果
+":cprevious (:cp) 当前页上一个结果
+":clist (:cl) 打开quickfix窗口，列出所有结果，不能直接用鼠标点击打开，只能看
+":copen (:cope) 打开quickfix窗口，列出所有结果，可以直接用鼠标点击打开
+":ccl[ose] 关闭 quickfix 窗口。
+"ctrl + ww 切换编辑窗口和quickfix窗口，在quickfix里面和编辑窗口一样jk表示上下移动，回车选中进入编辑窗口
+"
+"注意：要搜索的文件 可以是具体的文件路径，也可以是带通配符的路径比如 *.as **/*.as ，**表示递归所有子目录。 要搜索的文件和或搜索范围都可 以写多个，用空格分开。
+"例子：
+":vimgrep /\<flash\>/ **/*.as 搜索当前目录以及所有子目录内as文件中的 "flash"
+":vimgrep /an error/ *.c就是在所有的.c文件中搜索an error。
+":vimgrep/an error/* 意思是查找当前目录下的文件中的an error，不包括子目录
+":vim /Message/ **/*.js    搜索当前目录以及所有子目录内js文件中的 "Message"
+"
+
+""
+"""显示
+"":cw		显示查询到的Quickfix列表
 ":set list  显示特殊字符
 "
 ""滚动
@@ -354,12 +439,32 @@ map <C-i> <C-W>h<C-W>_
 "   upper,lower
 "   set visual,and then press "u" to lower,"U" to upper
 "
+"   counting word, lines  see   :help count-items 
+"       :%s/we_want_to_search//gn  characters
 "
+"   see :help pattern
+    "pattern			cursor position	~
+    "/test/+1		one line below "test", in column 1
+    "/test/e			on the last t of "test"
+    "/test/e+2			after the last t + 2 characters of "test"
+    "/test/s+2		on the 's' of "test"
+    "/test/b-3		three characters before "test"
+
+"  vim history  q:      edit cmd line 
 "
+"  diff 
+"  :e a.txt
+"  :vert diffsplit e:/b.txt
+"  :diffoff
+"  :diffthis
+"  :diffupdate
 "
 "shell命令
 " cat -vT desktop/a.php   shell命令查看文本文件不可打印字符、Tab等
 "
+" for windows 加载自定义配置
+"set runtimepath=c:/etc/phpvim,c:/etc/phpvim/after,$VIMRUNTIME
+"source c:/etc/phpvim/_vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 "for windows gvim73 utf8乱码
 "windows 去除注释即可
@@ -379,5 +484,12 @@ map <C-i> <C-W>h<C-W>_
 "language messages zh_CN.utf-8
 "for windows gvim73 utf8乱码 END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+if has("win32")
+    "set guifont=Courier_New:h12:b:cANSI
+    set guifont=Consolas:h14
+endif
 "modify time
-"2011年 08月 07日 星期日 17:36:51 CST
+"2012-04-09 22:39:48
+
+" vim: set ts=4 sw=4 tw=78 :
