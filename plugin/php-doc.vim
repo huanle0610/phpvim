@@ -315,8 +315,14 @@ func! PhpDocFunc()
     endif
 	exe l:txtBOL . g:pdv_cfg_Commentn . "@return " . g:pdv_cfg_ReturnVal . g:pdv_cfg_EOL
 
+	if exists("g:pdv_cfg_Author")
+	    exe l:txtBOL . g:pdv_cfg_Commentn . "@author " . g:pdv_cfg_Author g:pdv_cfg_EOL
+    endif
+
 	" Close the comment block.
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
+
+
     return l:modifier ." ". l:funcname
 endfunc
 
