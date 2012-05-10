@@ -213,11 +213,14 @@ nmap  <leader>pt "*p
 nmap  <leader>pn "-p
 " copy the current filename, and then you can use <leader>pm to paste
 nmap  <leader>cf :let @*=@%<CR>
+if has("win32")
+    nmap  <leader>cf :let @*=substitute(@%, '\\', '\/', 'g')<CR>
+endif
 nmap  <leader>ct :let @+=@*<CR>
 vnoremap <leader>yy "+y
 nmap <leader>ggy ggVG
 nmap <leader>gy VG
-
+ 
 
 "跳转代码行
 imap <silent> <C-a> <esc>/^\s*\w<CR>zt
