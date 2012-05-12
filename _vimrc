@@ -1,4 +1,4 @@
-"file:///usr/share/vim/vim73/doc/usr_41.txt   vim文档
+":file:///usr/share/vim/vim73/doc/usr_41.txt   vim文档
 "如果需要引入其它配置文件可以用命令
 "source _vim_udf.vim
 "
@@ -101,6 +101,35 @@ endfunction
 "autocmd BufEnter * call CHANGE_CURR_DIR()
 map <leader>cd  :call CHANGE_CURR_DIR()<CR>
 
+function! OPEN_WIN_EXPLORER()
+    let _dir = getcwd() 
+    "目录中无多字节文字，直接打开并选中本文件
+    if (matchstr(_dir,'[^\x00-\xff]') == '')
+        silent exec "!start explorer /e,,%:p:h,/select,%:p"
+        unlet _dir
+        return 
+    endif
+    "包含多字节时
+    silent exec "call CHANGE_CURR_DIR()"
+    silent exec '!start explorer .'
+    silent exec "cd " . _dir
+    unlet _dir
+endfunction
+"============================================
+"打开当前文件所在文件夹
+if has("win32")
+    nmap <C-F3> :exec '!start explorer .'<CR>
+    nmap <F11> :call OPEN_WIN_EXPLORER()<CR>
+else
+    nmap <C-F3> :exec '!gnome-open .'<CR>
+endif
+
+"cmd到当前文件所在文件夹
+if has("win32")
+    nmap <leader>dos :exec '!start cmd .'<CR>
+endif
+
+"
 "小括号、大括号、中括号、单双引号等自动补齐
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
@@ -268,8 +297,8 @@ endfunction
 autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
 " run python
-"map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
-"imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
+map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
+imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 "退出
 nmap <c-q> :q!<cr>
 
