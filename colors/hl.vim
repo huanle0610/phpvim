@@ -62,7 +62,7 @@ hi VisualNOS  term=underline,BOLD cterm=underline,BOLD gui=NONE guifg=#484848 gu
 "注释
 hi Comment      ctermbg=DarkGrey gui=NONE guifg=#A5A5A5 guibg=NONE
 "常量
-hi Constant     ctermbg=DarkGrey gui=NONE guifg=#0070e6 guibg=NONE
+hi Constant     ctermbg=DarkGrey gui=NONE guifg=#0070e6 guibg=#E5E5E5
 "数字
 hi Number       gui=NONE guifg=#aa0094 guibg=NONE
 "变量
@@ -80,7 +80,7 @@ hi Type         term=BOLD ctermbg=DarkGrey ctermfg=Blue gui=BOLD guifg=#0070e6 g
 hi Underlined   gui=UNDERLINE guifg=fg guibg=NONE
 hi Include      term=BOLD gui=BOLD guifg=#dd0000 guibg=NONE 
 hi Function     term=BOLD gui=BOLD guifg=#00aa00 guibg=NONE
-hi String       ctermbg=DarkGrey ctermfg=Cyan gui=NONE guifg=#4F4F6F
+hi String       ctermbg=DarkGrey ctermfg=Cyan gui=NONE guifg=#4F4F6F guibg=#EEFFEC
 hi Ignore       ctermbg=DarkGrey ctermfg=Yellow gui=NONE guifg=#404040 guibg=NONE
 
 hi Pmenu          guifg=#666666          guibg=#F0F0F0
