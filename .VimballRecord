@@ -1,1 +1,2 @@
 supertab.vba: call delete('/home/hl/phpvim/doc/supertab.txt')|call delete('/home/hl/phpvim/plugin/supertab.vim')
+DrawIt.vba: call delete('c:\etc\phpvim/plugin/DrawItPlugin.vim')|call delete('c:\etc\phpvim/plugin/cecutil.vim')|call delete('c:\etc\phpvim/autoload/DrawIt.vim')|call delete('c:\etc\phpvim/doc/DrawIt.txt')

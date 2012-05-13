@@ -269,7 +269,7 @@ nmap <silent> <C-F12> :TlistClose<CR>:TlistUpdate<CR>:TlistOpen<CR>
 
 "删除空行，删除行尾空字符,删除^M dos结束符
 nmap <leader>dl :g/^\s*$/d<CR>
-nmap <leader>ds :1,$s/\s*$//g<CR>
+nmap <leader>de :1,$s/\s*$//g<CR>
 nmap <leader>dw :%s/\r//g<CR>
 
 """""""""""""""""""""""""
