@@ -203,6 +203,10 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%0
 "命令栏高度设置
 set cmdheight=1 "aslo can use ch
 "GUI设置
+"Autoselect 
+"whenever VISUAL mode is started,Vim tries to become the owner of
+"the windowing system's global selection.
+set guioptions+=a
 "隐藏底部滚动条
 set guioptions-=b
 "隐藏右边滚动条
@@ -447,7 +451,10 @@ map <C-i> <C-W>h<C-W>_
 """显示
 "":cw		显示查询到的Quickfix列表
 ":set list  显示特殊字符
-"
+"移动
+" gk,gh,gi,gl move not linewise.
+" ^	To the first non-blank character of the line.            
+" g_  To the last non-blank character of the line.
 ""滚动
 "zz: 将当前行置于屏幕中间
 "zt: 将当前行置于屏幕顶端
@@ -468,11 +475,24 @@ map <C-i> <C-W>h<C-W>_
 "
 "   vim a.php +11 打开a.php，定位到第11行
 "
-"   upper,lower
+"   upper,lower     :help ~
 "   set visual,and then press "u" to lower,"U" to upper
+"   ~         将光标下的字母改变大小写
+"   3~        将光标位置开始的3个字母改变其大小写
+"   g~~       改变当前行字母的大小写
+"   U         将可视模式下选择的字母全改成大写字母
+"   u         将可视模式下选择的字母全改成小写
+"   gUU       将当前行的字母改成大写
+"   3gUU      将从光标开始到下面3行字母改成大写
+"   guu       将当前行的字母全改成小写
+"   gUw       将光标下的单词改成大写。
+"   guw       将光标下的单词改成小写。
+"   
 "
 "   counting word, lines  see   :help count-items 
 "       :%s/we_want_to_search//gn  characters
+"   search word ignorecase :help /ignorecase
+"       /Red\c
 "
 "   see :help pattern
     "pattern			cursor position	~
@@ -482,7 +502,9 @@ map <C-i> <C-W>h<C-W>_
     "/test/s+2		on the 's' of "test"
     "/test/b-3		three characters before "test"
 
-"  vim history  q:      edit cmd line 
+"  vim history  q:      edit cmd line  :help q:
+"   From Normal mode, use the "q:", "q/" or "q?" command.
+"   This starts editing an Ex command-line ("q:") or search string ("q/" or "q?")
 "
 "  diff 
 "  :e a.txt
