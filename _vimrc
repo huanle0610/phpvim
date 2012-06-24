@@ -203,10 +203,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%0
 "命令栏高度设置
 set cmdheight=1 "aslo can use ch
 "GUI设置
-"Autoselect 
-"whenever VISUAL mode is started,Vim tries to become the owner of
-"the windowing system's global selection.
-set guioptions+=a
+set guioptions-=a
 "隐藏底部滚动条
 set guioptions-=b
 "隐藏右边滚动条
@@ -298,7 +295,7 @@ function! PhpCheckSyntax()
 endfunction
 
 " Perform :PhpCheckSyntax()
-autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
+"autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
 " run python
 map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
