@@ -102,6 +102,7 @@ endfunction
 map <leader>cd  :call CHANGE_CURR_DIR()<CR>
 
 function! OPEN_WIN_EXPLORER()
+    "silent exec "!gnome-open %p:%h"
     let _dir = getcwd() 
     "目录中无多字节文字，直接打开并选中本文件
     if (matchstr(_dir,'[^\x00-\xff]') == '')
