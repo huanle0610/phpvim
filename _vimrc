@@ -177,6 +177,9 @@ colorscheme hl
 "语法开启
 syntax on
 
+highlight NOTE guifg=BLUE guibg=yellow
+syntax match NOTE /NOTE/
+
 "Tab设置为4个字符
 set tabstop=4   "设置tabs显示为4个空格的宽度(默认为8个)
 set softtabstop=4
@@ -246,9 +249,10 @@ nmap  <leader>ps "+p
 nmap  <leader>pt "*p
 nmap  <leader>pn "-p
 " copy the current filename, and then you can use <leader>pm to paste
-nmap  <leader>cf :let @*=@%<CR>
 if has("win32")
     nmap  <leader>cf :let @*=substitute(@%, '\\', '\/', 'g')<CR>
+else
+    nmap  <leader>cf :let @+=@%<CR>
 endif
 nmap  <leader>ct :let @+=@*<CR>
 vnoremap <leader>yy "+y
@@ -299,11 +303,8 @@ function! PhpCheckSyntax()
 endfunction
 
 " Perform :PhpCheckSyntax()
-autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
+"autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
-" run python
-map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
-imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 "退出
 nmap <c-q> :q!<cr>
 
@@ -543,6 +544,10 @@ map <C-i> <C-W>h<C-W>_
 if has("win32")
     "set guifont=Courier_New:h12:b:cANSI
     set guifont=Consolas:h14
+
+    " run python
+    map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
+    imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 endif
 "modify time
 "2012-04-09 22:39:48

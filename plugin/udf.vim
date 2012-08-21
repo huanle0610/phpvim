@@ -56,7 +56,7 @@ function GetFileType()
 endf
 
 " php-doc config
-let g:pdv_cfg_Author = "hl <huanle0610@gmail.com>"
+"let g:pdv_cfg_Author = "hl <huanle0610@gmail.com>"
 
 "note plugin config
 let g:notes_directory = '~/notes'
