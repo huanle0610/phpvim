@@ -324,8 +324,6 @@ nmap <C-F2> :ccl<CR>
 nmap <F3> :tselect<cr>
 
 
-
-
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -333,6 +331,9 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+" PHP Generated Code Highlights (HTML & SQL)
+let php_sql_query=1
+let php_htmlInStrings=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""函数部分
 
