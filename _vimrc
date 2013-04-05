@@ -102,6 +102,7 @@ endfunction
 map <leader>cd  :call CHANGE_CURR_DIR()<CR>
 
 function! OPEN_WIN_EXPLORER()
+    "silent exec "!gnome-open %p:%h"
     let _dir = getcwd() 
     "目录中无多字节文字，直接打开并选中本文件
     if (matchstr(_dir,'[^\x00-\xff]') == '')
@@ -144,9 +145,9 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""折叠相关配置"""""""
 "手工定义折叠
-"set fdm=manual
+set fdm=manual
 "根据缩进折叠
-set fdm=indent
+"set fdm=indent
 "用表达式来定义折叠
 "set fdm=expr
 "用语法高亮来定义折叠
@@ -175,6 +176,9 @@ colorscheme hl
 
 "语法开启
 syntax on
+
+highlight NOTE guifg=BLUE guibg=yellow
+syntax match NOTE /NOTE/
 
 "Tab设置为4个字符
 set tabstop=4   "设置tabs显示为4个空格的宽度(默认为8个)
@@ -245,9 +249,10 @@ nmap  <leader>ps "+p
 nmap  <leader>pt "*p
 nmap  <leader>pn "-p
 " copy the current filename, and then you can use <leader>pm to paste
-nmap  <leader>cf :let @*=@%<CR>
 if has("win32")
     nmap  <leader>cf :let @*=substitute(@%, '\\', '\/', 'g')<CR>
+else
+    nmap  <leader>cf :let @+=@%<CR>
 endif
 nmap  <leader>ct :let @+=@*<CR>
 vnoremap <leader>yy "+y
@@ -298,11 +303,8 @@ function! PhpCheckSyntax()
 endfunction
 
 " Perform :PhpCheckSyntax()
-autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
+"autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
-" run python
-map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
-imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 "退出
 nmap <c-q> :q!<cr>
 
@@ -322,8 +324,6 @@ nmap <C-F2> :ccl<CR>
 nmap <F3> :tselect<cr>
 
 
-
-
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascrīpt set omnifunc=javascrīptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -331,6 +331,9 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+" PHP Generated Code Highlights (HTML & SQL)
+let php_sql_query=1
+let php_htmlInStrings=1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""函数部分
 
@@ -542,6 +545,10 @@ map <C-i> <C-W>h<C-W>_
 if has("win32")
     "set guifont=Courier_New:h12:b:cANSI
     set guifont=Consolas:h14
+
+    " run python
+    map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
+    imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
 endif
 "modify time
 "2012-04-09 22:39:48
