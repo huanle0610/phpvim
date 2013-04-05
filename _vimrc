@@ -287,7 +287,7 @@ nmap <leader>dw :%s/\r//g<CR>
 
 function! PhpCheckSyntax()
     " Check php syntax
-    setlocal makeprg=\"/usr/local/php5/bin/php\"\ -l\ -n\ -d\ html_errors=off
+    setlocal makeprg=\"php\"\ -l\ -n\ -d\ html_errors=off
 
     " Set shellpipe
     setlocal shellpipe=>
@@ -311,8 +311,8 @@ nmap <c-q> :q!<cr>
 map <F4> :se invnu<CR>
 "定义切换插入模式粘贴切换快捷键
 set pastetoggle=<C-F9>
-"不复制行号
-set mouse=a
+"不复制行号, 为了在终端下使用方便,请在要复制时f4隐藏行号
+"set mouse=a
 
 "Quickfix窗口显示
 nmap <F2> :cw<CR>
