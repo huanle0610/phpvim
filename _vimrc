@@ -198,7 +198,7 @@ nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 
 "状态栏显示设置
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [%l,%v][%p%%]\ [LEN=%L]\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%b]\ [HEX=\%B]\ [%l,%v][%p%%]\ [LEN=%L]\ %=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}
 
 "命令栏高度设置
 set cmdheight=1 "aslo can use ch
@@ -298,8 +298,9 @@ endfunction
 "autocmd BufWritePost *.php,*.phps :call PhpCheckSyntax()
 
 " run python
-map <silent> <F10> :w<CR>:!D:/Python27/python.exe %<CR>
-imap <silent> <F10> <ESC>:w<CR>:!D:/Python27/python.exe %<CR>
+" !start cmd /c "my app.exe" & pause
+map <silent> <F10> :w<CR>:!start cmd /c D:/Python27/python.exe % &pause<CR>
+map <silent> <F10> <ESC>:w<CR>:!start cmd /c D:/Python27/python.exe % &pause<CR>
 "退出
 nmap <c-q> :q!<cr>
 
@@ -461,15 +462,15 @@ map <C-i> <C-W>h<C-W>_
 "L:  屏幕最下方
 "还有一条就是移动光标所在行的位置，就是说，比如我光标在第10行，我想光标不动，但是所在行向上移，ctrl-e啦，然后向下的话，ctrl-y~
 
-"	ci'、ci"、ci(、ci[、ci{、ci< - 分别更改这些配对标点符号中的文本内容
-"	di'、di"、di(或dib、di[、di{或diB、di< - 分别删除这些配对标点符号中的文本内容
-"	da'、da"、da(或dab、da[、da{或daB、da< - 分别删除这些配对标点符号和文本内容
-"	yi'、yi"、yi(、yi[、yi{、yi< - 分别复制这些配对标点符号中的文本内容
-"	ya'、ya"、ya(、ya[、ya{、ya< - 分别复制这些配对标点符号和文本内容
-"	vi'、vi"、vi(、vi[、vi{、vi< - 分别选中这些配对标点符号中的文本内容
-"	另外如果把上面的i改成a可以连配对标点一起操作。
-"	yf'、yf"、yf)、yf]、yf}、yf> - 分别复制从当前光标到标点符号和文本内容
-"
+" ci'、ci"、ci(、ci[、ci{、ci< - 分别更改这些配对标点符号中的文本内容
+" di'、di"、di(或dib、di[、di{或diB、di< - 分别删除这些配对标点符号中的文本内容
+" da'、da"、da(或dab、da[、da{或daB、da< - 分别删除这些配对标点符号和文本内容
+" yi'、yi"、yi(、yi[、yi{、yi< - 分别复制这些配对标点符号中的文本内容
+" ya'、ya"、ya(、ya[、ya{、ya< - 分别复制这些配对标点符号和文本内容
+" vi'、vi"、vi(、vi[、vi{、vi< - 分别选中这些配对标点符号中的文本内容
+" 另外如果把上面的i改成a可以连配对标点一起操作。
+" yf'、yf"、yf)、yf]、yf}、yf> - 分别复制从当前光标到标点符号和文本内容
+
 "   vim a.php +11 打开a.php，定位到第11行
 "
 "   upper,lower     :help ~
@@ -538,7 +539,8 @@ map <C-i> <C-W>h<C-W>_
 "
 if has("win32")
     "set guifont=Courier_New:h12:b:cANSI
-    set guifont=Consolas:h14
+    "set guifont=Consolas:h14
+    set nobackup
 endif
 "modify time
 "2012-04-09 22:39:48
