@@ -1,0 +1,37 @@
+1. |常用检索|
+2. |常用命令|
+3. |浏览|
+4. |格式化代码|
+5. |支持中文标签跳转|
+
+1. *常用检索*
+\([^\x00-\xff]\)                 中文（多字节）字符
+\([^\x00-\xff]\)\1              中文叠字（呵呵，重重， 芸芸）
+
+:%s/word//gn                 统计单词出现次数  :h count-items
+   
+       :%s/./&/gncharacters
+       :%s/\i\+/&/gnwords
+       :%s/^//nlines
+       :%s/the/&/gn"the" anywhere
+       :%s/\<the\>/&/gn"the" as a word
+
+2.
+3. HELLO WHAT
+4. *格式化代码*
+    ggVG
+    =
+    解析： gg 到页面最上方，V 行选中模式 G全部  = 格式化
+    : >
+ if($a == 'abc'){ echo 'hello you'}
+5. Vim帮助文档
+Vim帮助文档建立标签只能对英文字符会起到高亮效果.
+解决： 
+
+
+
+
+
+
+
+vim:tw=78:ts=8:ft=help:norl:
