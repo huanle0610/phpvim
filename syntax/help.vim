@@ -13,11 +13,11 @@ syn match helpSectionDelim	"^=\{3,}.*===$"
 syn match helpSectionDelim	"^-\{3,}.*--$"
 syn region helpExample		matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<"
 if has("ebcdic")
-  "syn match helpHyperTextJump	"\\\@<!|[^"*|]\+|" contains=helpBar
-  syn match helpHyperTextJump	"\\\@<!|\([#-)!+-~]\|[^\x00-\xff]\)\+|" contains=helpBar
+  syn match helpHyperTextJump	"\\\@<!|[#-)!+-~]\+|" contains=helpBar
   syn match helpHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1 contains=helpStar
   syn match helpHyperTextEntry	"\*[^"*|]\+\*$" contains=helpStar
 else
+  "修改了以下三行，已支持中文标签
   syn match helpHyperTextJump	"\\\@<!|\([#-)!+-~]\|[^\x00-\xff]\)\+|" contains=helpBar
   syn match helpHyperTextEntry	"\*\([#-)!+-~]\|[^\x00-\xff]\)\+\*\s"he=e-1 contains=helpStar
   syn match helpHyperTextEntry	"\*\([#-)!+-~]\|[^\x00-\xff]\)\+\*$" contains=helpStar
