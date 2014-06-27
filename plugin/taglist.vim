@@ -97,6 +97,8 @@ if !exists('loaded_taglist')
             let Tlist_Ctags_Cmd = 'ctags.exe'
         elseif executable('tags')
             let Tlist_Ctags_Cmd = 'tags'
+        elseif executable('C:\etc\phpvim\back\ctags.exe')
+            let Tlist_Ctags_Cmd = 'C:\etc\phpvim\back\ctags.exe'
         else
             echomsg 'Taglist: Exuberant ctags (http://ctags.sf.net) ' .
                         \ 'not found in PATH. Plugin is not loaded.'

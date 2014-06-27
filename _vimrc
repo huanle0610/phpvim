@@ -5,6 +5,10 @@
 "不需要保持和 vi 非常兼容
 set nocompatible
 set backspace=indent,eol,start
+"不要备份
+set nobackup
+set noswapfile
+
 "Set mapleader
 let mapleader = ","
 nmap <leader>uuc :call UpdateCFG()<CR>
@@ -515,6 +519,22 @@ map <C-i> <C-W>h<C-W>_
 "  :diffoff
 "  :diffthis
 "  :diffupdate
+"  
+"  Magic put
+":put =map(range(1,150), 'printf(''%04d'', v:val)')
+":put=map(range(3,30), 'printf(''drop table node_history_info_n%02d'', v:val)')
+":put=map(range(3,30), 'printf(''drop table node_history_info_n%d;'', v:val)') + map(range(3,30), 'printf(''drop table proc_info_n%d;'', v:val)')
+
+":call append(123,range(11,15))) to insert the five lines after line number 123
+":put=map(range(97,122), 'printf(''%c'', v:val)')     put a-z
+
+":put=map(range(65, 90), 'printf(''%c'', v:val)')      put A-Z
+
+":123put=range(11,15)
+
+":for i in range(1,10) | put ='192.168.0.'.i | endfor
+
+":put =range(3,30)
 "
 "shell命令
 " cat -vT desktop/a.php   shell命令查看文本文件不可打印字符、Tab等
