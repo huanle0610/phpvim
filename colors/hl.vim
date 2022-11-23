@@ -1,6 +1,6 @@
 " Vim color file
 " Maintainer: hl <huanle0610@gmail.com> 
-" Last Change: 2011Äê 08ÔÂ 20ÈÕ ĞÇÆÚÁù 20:57:14 CST
+" Last Change: 2011å¹´ 08æœˆ 20æ—¥ æ˜ŸæœŸå…­ 20:57:14 CST
 "     version: 1.0
 " This color scheme uses a light background.
 
@@ -48,34 +48,35 @@ hi FoldColumn   term=standout ctermbg=LightGrey ctermfg=DarkBlue gui=NONE guifg=
 
 " Other
 hi Directory    term=BOLD ctermfg=LightCyan term=underline ctermfg=Yellow gui=NONE guifg=#0070b8 guibg=NONE
-"ĞĞºÅ
+"è¡Œå·
 hi LineNr       term=underline ctermfg=Yellow gui=NONE guifg=#acacac guibg=NONE
-"ÎŞ×Ö·ûÇøÓò
+"æ— å­—ç¬¦åŒºåŸŸ
 hi NonText      term=BOLD ctermfg=LightMagenta gui=BOLD guifg=#00a0c0 guibg=NONE
-"ÌØÊâ×Ö·ûeg: 
+"ç‰¹æ®Šå­—ç¬¦eg:
+ 
 hi SpecialKey   term=BOLD ctermfg=LightBlue gui=NONE guifg=#4040ff guibg=NONE
 hi Title        term=BOLD ctermfg=LightMagenta gui=NONE guifg=#0050a0 guibg=#c0e8ff
 hi Visual       term=reverse ctermbg=black gui=NONE guifg=#484848 guibg=#e0e0e0
 hi VisualNOS  term=underline,BOLD cterm=underline,BOLD gui=NONE guifg=#484848 guibg=#e0e0e0
 
 " Syntax group
-"×¢ÊÍ
+"æ³¨é‡Š
 hi Comment      ctermbg=DarkGrey gui=NONE guifg=#A5A5A5 guibg=NONE
-"³£Á¿
+"å¸¸é‡
 hi Constant     ctermbg=DarkGrey gui=NONE guifg=#0070e6 guibg=#E5E5E5
-"Êı×Ö
+"æ•°å­—
 hi Number       gui=NONE guifg=#aa0094 guibg=NONE
-"±äÁ¿
+"å˜é‡
 hi Identifier   ctermbg=DarkGrey gui=NONE guifg=#0070e6 guibg=NONE
 hi Error        term=BOLD gui=BOLD guifg=#ffffff guibg=#dd0000
-"¹Ø¼ü×Ö
+"å…³é”®å­—
 hi PreProc      term=BOLD ctermbg=DarkGrey ctermfg=red gui=BOLD guifg=#e06800 guibg=NONE
-"ÌØÊâ·ûºÅ£¬À¨ºÅÖ®ÀàµÄ
+"ç‰¹æ®Šç¬¦å·ï¼Œæ‹¬å·ä¹‹ç±»çš„
 hi Special      term=NONE ctermbg=DarkGrey gui=NONE guifg=#4a9400 guibg=NONE
-"Óï¾ä
+"è¯­å¥
 hi Statement    term=BOLD ctermbg=DarkGrey gui=NONE guifg=#ff7700 guibg=NONE
 hi Todo         gui=UNDERLINE guifg=#ff0070 guibg=#ffe0f4
-"ÀàĞÍfunction,class
+"ç±»å‹function,class
 hi Type         term=BOLD ctermbg=DarkGrey ctermfg=Blue gui=BOLD guifg=#0070e6 guibg=NONE
 hi Underlined   gui=UNDERLINE guifg=fg guibg=NONE
 hi Include      term=BOLD gui=BOLD guifg=#dd0000 guibg=NONE 

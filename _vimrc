@@ -8,6 +8,7 @@ set backspace=indent,eol,start
 "不要备份
 set nobackup
 set noswapfile
+set laststatus=2
 
 "Set mapleader
 let mapleader = ","
@@ -36,7 +37,7 @@ nmap <leader>tcn :call InsertDate('cdate',1)<CR>
 nmap <leader>pec :call Phpend(" CREATE BY JERRY ON ".GetDate('date_time'))<CR>
 nmap <leader>pe :call Phpend('')<CR>
 "=========================================
- 
+
 
 "=========================================
 "缩写配置
@@ -262,7 +263,7 @@ nmap  <leader>ct :let @+=@*<CR>
 vnoremap <leader>yy "+y
 nmap <leader>ggy ggVG
 nmap <leader>gy VG
- 
+
 
 "跳转代码行
 imap <silent> <C-a> <esc>/^\s*\w<CR>zt
@@ -341,6 +342,15 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+
+" augroup XML
+"     autocmd!
+"     autocmd FileType xml let g:xml_syntax_folding=1
+"     autocmd FileType xml setlocal foldmethod=syntax
+"     autocmd FileType xml :syntax on
+"     autocmd FileType xml :%foldopen!
+" augroup END
+
 " PHP Generated Code Highlights (HTML & SQL)
 let php_sql_query=1
 let php_htmlInStrings=1
@@ -363,6 +373,11 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
+
+func! HighlightSpecial()
+    let @/ = "[^\\x00-\\x7f]"
+endfunc
+nmap <silent> <C-h> :call HighlightSpecial()<CR>
 
 """"""""""""""""""""""""""""""
 " => bufExplorer plugin
